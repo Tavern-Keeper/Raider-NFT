@@ -30,6 +30,7 @@ contract Raider is ERC721URIStorage, Ownable {
     constructor() ERC721("Raider Guild Avatars","RAIDER") {}
 
 
+    //Initializes Attribute Struct with Discord ID and Primary + Secondary Skills
     function createProfile(uint discord_id, string calldata primary, string calldata secondary) public onlyOwner{
 
         Attributes memory raider;
@@ -40,6 +41,7 @@ contract Raider is ERC721URIStorage, Ownable {
         emit ProfileCreated(discord_id);
     }
 
+    //Links Address to Attribute Struct
     function authenticate(uint discord_id, address _address) public {
 
         require(bytes(Raiders[discord_id].primary_skill).length > 0, "Profile Not Created");
@@ -48,6 +50,7 @@ contract Raider is ERC721URIStorage, Ownable {
         emit ProfileAuthenticated(discord_id, _address);
     }
 
+    //Mints NFT
     function mintRaider(uint discord_id, string calldata uri) public onlyOwner{
 
         Raiders[discord_id].raider_id = id;
