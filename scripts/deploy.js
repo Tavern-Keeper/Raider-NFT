@@ -4,7 +4,7 @@ async function main() {
   
     await raider.deployed();
   
-    console.log("Greeter deployed to:", raider.address);
+    console.log("Raider Skill NFT deployed to:", raider.address);
   }
   
   
@@ -14,3 +14,5 @@ async function main() {
       console.error(error);
       process.exit(1);
     });
+
+    
