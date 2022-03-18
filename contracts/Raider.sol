@@ -23,6 +23,8 @@ contract Raider is ERC721URIStorage, Ownable {
     //Raider NFT ID counter
     uint public id = 1;
 
+    event Mint(address from, address to, uint256 id);
+
     constructor() ERC721("Raider Guild Avatars","RAIDER") {}
 
     //Initializes Attribute Struct with Discord ID and Primary + Secondary Skills
@@ -48,11 +50,12 @@ contract Raider is ERC721URIStorage, Ownable {
     //Mints NFT
     function mintRaider(uint discord_id, string calldata uri) public onlyOwner{
 
-        Raiders[discord_id].raider_id = id;
-        _mint(Raiders[discord_id]._address, id);
-        _setTokenURI(id, uri);
+        uint256 nft_id = id;
+        Raiders[discord_id].raider_id = nft_id;
+        _mint(Raiders[discord_id]._address, nft_id);
+        _setTokenURI(nft_id, uri);
+        emit Mint(msg.sender, Raiders[discord_id]._address, nft_id);
         id++;
-
     }
 
     function changeAvatar(uint nft_id, string calldata new_uri) public onlyOwner{
@@ -64,3 +67,4 @@ contract Raider is ERC721URIStorage, Ownable {
 
 
 }
+
