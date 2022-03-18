@@ -38,6 +38,7 @@ contract Raider is ERC721URIStorage, Ownable {
         raider.primary_skill = primary;
         raider.secondary_skill = secondary;
         raider._address = _address;
+
         Raiders[discord_id] = raider;
         mintRaider(discord_id, uri);
         
@@ -75,6 +76,12 @@ contract Raider is ERC721URIStorage, Ownable {
     function changeAvatar(uint nft_id, string calldata new_uri) public onlyOwner{
 
         _setTokenURI(nft_id, new_uri);
+
+    }
+
+    function viewAchievements(uint discord_id) public view  returns (string[] memory){
+
+        return Raiders[discord_id].achievements;
 
     }
 
