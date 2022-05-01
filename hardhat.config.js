@@ -1,23 +1,16 @@
 require("@nomiclabs/hardhat-waffle");
-
-const {polygon, alchemy, privateKey} = require('./config/config.json') //Alchemy URL and Private Key in config folder
-
-
+require("dotenv").config();
 
 module.exports = {
   solidity: "0.8.9",
   networks: {
     polygon_mumbai: {
-      url: polygon,
-      accounts: [privateKey]
-    },
-    harmony_testnet: {
-      url: 'https://api.s0.pops.one/',
-      accounts: [privateKey]
+      url: process.env.MUMBAI,
+      accounts: [process.env.BOT_PRIVATE_KEY]
     },
     rinkeby: {
-      url: alchemy,
-      accounts: [privateKey]
+      url: process.env.ALCHEMY_RINKEBY_HTTP_KEY,
+      accounts: [process.env.BOT_PRIVATE_KEY]
     }
   },
 }
