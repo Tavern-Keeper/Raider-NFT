@@ -4,9 +4,8 @@ async function main() {
 
     await tavernkeeper.deployed();
 
-    console.log("Raider Skill NFT deployed to:", tavernkeeper.address);
+    console.log("Tavern Keeper Skill NFT deployed to:", tavernkeeper.address);
   }
-
 
   main()
     .then(() => process.exit(0))
